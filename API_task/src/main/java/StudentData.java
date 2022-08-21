@@ -1,5 +1,7 @@
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import java.util.List;
+
 public class StudentData {
 
     @JsonProperty("first_name")
@@ -14,4 +16,7 @@ public class StudentData {
 
     @JsonProperty("last_name")
     public String lastName;
+//
+//    @JsonProperty("courses")
+//    public List<Course> courses;
 }

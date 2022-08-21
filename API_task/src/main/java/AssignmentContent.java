@@ -1,16 +1,16 @@
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class AssignmentContentData {
+public class AssignmentContent {
     @JsonProperty
     public String content;
 
     @JsonInclude(JsonInclude.Include.NON_DEFAULT)
     public Integer id;
 
-    public AssignmentContentData() {}
+    public AssignmentContent() {}
 
-    public AssignmentContentData(String content) {
+    public AssignmentContent(String content) {
         this.content = content;
     }
 }
