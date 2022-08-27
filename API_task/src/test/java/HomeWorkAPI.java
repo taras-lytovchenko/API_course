@@ -100,6 +100,7 @@ public class HomeWorkAPI extends BaseTest {
         AssignmentContent[] allAssignmentContent = RestAssured.get("/content").as(AssignmentContent[].class);
         int start_process = 0;
         int end_process = getAllStudents.length / 2;
+
         for (int i = 0; i < allAssignmentContent.length; i++) {
             if (i == 1) {start_process = getAllStudents.length / 2; end_process = getAllStudents.length;}
             for (int s = start_process; s < end_process; s++) {
