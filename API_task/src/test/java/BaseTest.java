@@ -1,5 +1,6 @@
 import io.restassured.RestAssured;
 import io.restassured.builder.RequestSpecBuilder;
+import io.restassured.config.HeaderConfig;
 import io.restassured.http.ContentType;
 import io.restassured.response.Response;
 import org.json.JSONObject;
@@ -14,6 +15,7 @@ public class BaseTest {
     private String sessionToken;
 
 
+
     @BeforeTest
     public void setUp() {
         RestAssured.baseURI = "http://www.robotdreams.karpenko.cc/";
@@ -22,12 +24,12 @@ public class BaseTest {
                 .setAccept(ContentType.JSON)
                 .build();
         userName = userNamePrefix + randomAlphanumeric(5);
-        JSONObject jo = new JSONObject();
-        jo.put("username", userName);
-        jo.put("password", password);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("username", userName);
+        jsonObject.put("password", password);
 
         RestAssured.given()
-                .body(jo.toString())
+                .body(jsonObject.toString())
                 .when()
                 .post("/user").then().statusCode(200);
 
@@ -37,9 +39,11 @@ public class BaseTest {
                 .when()
                 .get("/login");
         sessionResponse.then().statusCode(200);
-        JSONObject joTokenRespone = new JSONObject(sessionResponse.asString());
-        sessionToken = joTokenRespone.getString("session_token");
-        System.out.println(sessionToken);
+        JSONObject jsonObject1Respone = new JSONObject(sessionResponse.asString());
+        sessionToken = jsonObject1Respone.getString("session_token");
+        System.out.println("Session token = " + sessionToken);
+
+        RestAssured.config = RestAssured.config.headerConfig(HeaderConfig.headerConfig().overwriteHeadersWithName("user-token"));
 
         RestAssured.requestSpecification = new RequestSpecBuilder()
                 .setContentType(ContentType.JSON)
