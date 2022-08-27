@@ -16,5 +16,5 @@ public class StudentDashboard {
     public List<Group> groups;
 
     @JsonProperty
-    public List<PACKAGE_NAME.StudentDashboardAssignment> assignments;
+    public List<StudentDashboardAssignment> assignments;
 }

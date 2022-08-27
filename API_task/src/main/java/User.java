@@ -1,14 +1,14 @@
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class User {
-    @JsonProperty("username")
-    public String name;
+    @JsonProperty
+    public String username;
 
     @JsonProperty
     public String password;
 
     public User(String name, String password) {
-        this.name = name;
+        this.username = name;
         this.password = password;
     }
 }
